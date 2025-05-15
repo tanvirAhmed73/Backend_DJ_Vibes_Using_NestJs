@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +13,10 @@ async function bootstrap() {
   app.enableCors();
   // enable node.js middle helmet library for all routes for security
   app.use(helmet());
+
+  // enable global validation pipe for all routes
+  app.useGlobalPipes(new ValidationPipe());
+
 
 
   // Swagger
