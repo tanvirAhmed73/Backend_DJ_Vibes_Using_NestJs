@@ -7,7 +7,7 @@ export class AuthService {
   async register(user_data:CreateAuthDto) {
     try {
       const {name, email, password} = user_data
-
+      
       // check if user email exist or not
       const userEmailExist = await UserRepository.exist({
         field: 'email',
